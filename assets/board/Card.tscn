@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/beast_img/beast_placeholder.jpg" type="Texture" id=1]
+[ext_resource path="res://assets/board/card_ui/StatusContainer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/board/CardScript.gd" type="Script" id=3]
+[ext_resource path="res://assets/board/card_ui/ActionMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/board/CardViewportScript.gd" type="Script" id=5]
+
+[sub_resource type="ViewportTexture" id=1]
+flags = 4
+viewport_path = NodePath("StatusViewport")
+
+[sub_resource type="BoxShape" id=2]
+
+[node name="Card" type="Sprite3D"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+flip_v = true
+texture = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="StatusViewport" type="Viewport" parent="."]
+size = Vector2( 256, 256 )
+transparent_bg = true
+handle_input_locally = false
+script = ExtResource( 5 )
+
+[node name="StatusContainer" parent="StatusViewport" instance=ExtResource( 2 )]
+
+[node name="StatusUI" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -5, 0 )
+sorting_offset = 5.0
+texture = SubResource( 1 )
+
+[node name="ActionMenu" parent="." instance=ExtResource( 4 )]
+
+[node name="ClickableArea" type="Area" parent="."]
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="Collision" type="CollisionShape" parent="ClickableArea"]
+transform = Transform( 5.78989, 0, 0, 0, -4.62457e-07, -5.78989, 0, 1, 1.65661e-07, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[connection signal="input_event" from="ClickableArea" to="." method="_on_ClickableArea_input_event"]
