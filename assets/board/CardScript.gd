@@ -8,6 +8,12 @@ func _ready():
 	# cambiar tamaño de la textura
 	var img_h = texture.get_height() 
 	pixel_size = desired_world_height / img_h
+	init_card_ui()
+	
+
+func init_card_ui():
+	load_action_menu()
+	action_menu.connect_actions()
 
 
 func _on_ClickableArea_input_event(_camera, event, _position, _normal, _shape_idx):
@@ -16,3 +22,5 @@ func _on_ClickableArea_input_event(_camera, event, _position, _normal, _shape_id
 			action_menu.toggle_menu()
 
 		
+func load_action_menu():
+	action_menu.load_actions_ui("card_actions")

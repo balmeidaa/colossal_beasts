@@ -14,9 +14,14 @@ config/name="Colossal Beasts"
 run/main_scene="res://Test_main.tscn"
 config/icon="res://double-dragon-icon.png"
 
+[autoload]
+
+GameHandler="*res://assets/board/event_handlers/game_handler.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+theme/custom="res://assets/resources/main_theme.tres"
 
 [layer_names]
 

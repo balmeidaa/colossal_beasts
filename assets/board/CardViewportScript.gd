@@ -2,8 +2,6 @@ extends Viewport
 
 var ui_container = null
 
-
-## conectar los viewport buscando los hijos del nodo
 func _ready():
 	var node_child = get_children()
 	if node_child == null:
@@ -14,6 +12,7 @@ func _ready():
 	### DEBUG FUNC
 	_resize()
 
+				
 func _resize():	
 	if ui_container == null:
 		return
