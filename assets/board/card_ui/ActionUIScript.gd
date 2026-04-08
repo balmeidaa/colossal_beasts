@@ -4,7 +4,7 @@ signal action_selected
 export var a = 1
 
 func _ready():
-	pass # Replace with function body.
+	pass 
 
 func load_action(_action_data):
 	pass

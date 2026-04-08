@@ -10,23 +10,25 @@ var actionUI := preload("res://assets/board/card_ui/ActionUI.tscn")
 export var anim_time := 1.0
 
 var viewport_size: Vector2
-var is_hiding = true
+var is_showing = false
 # usar valores fijos al mover el menu para evitar bugs al desplegarlo
 var hide_pos := 0.0
 var show_pos := 0.0
 
 func _ready():
+# TODO  Si este menu no pertenece al jugador, no agregarlo al grupo y esconder menu
+	add_to_group("menu_ui")
+	
 	viewport_size = get_viewport().size
 	control_ui.rect_position.x =  - viewport_size.x 
 	hide_pos = control_ui.rect_position.x -  viewport_size.x
 	show_pos = control_ui.rect_position.x +  viewport_size.x
 	
- 
-	
+
 
 func _process(_delta):
-
-	if Input.is_action_pressed("ui_cancel") and not is_hiding:
+# TODO  Si este menu no pertenece al jugador, desactivarlo
+	if Input.is_action_pressed("ui_cancel") and is_showing:
 		toggle_menu()
 	
 func load_actions_ui(_card_actions):
@@ -46,12 +48,14 @@ func get_all_ui_actions():
 	return vbox_ui.get_children()
 	
 func toggle_menu():
-	is_hiding = !is_hiding
+	is_showing = !is_showing
 	
-	if is_hiding:
-		hide_menu()
-	else:
+	GameHandler.update_ui_action_menu(self)
+	
+	if is_showing:
 		show_menu()
+	else:
+		hide_menu()
 
 func show_menu():
 	tween.interpolate_property(control_ui, "rect_position:x",
@@ -65,3 +69,5 @@ func hide_menu():
 		Tween.TRANS_CIRC, Tween.EASE_IN)
 	tween.start()
 
+func get_rect_size():
+	return $Control.rect_size
