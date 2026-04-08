@@ -16,9 +16,8 @@ var hide_pos := 0.0
 var show_pos := 0.0
 
 func _ready():
-# TODO  Si este menu no pertenece al jugador, no agregarlo al grupo y esconder menu
-	add_to_group("menu_ui")
-	
+# TODO  Si este menu no pertenece al jugador, esconder menu
+
 	viewport_size = get_viewport().size
 	control_ui.rect_position.x =  - viewport_size.x 
 	hide_pos = control_ui.rect_position.x -  viewport_size.x
@@ -36,9 +35,10 @@ func load_actions_ui(_card_actions):
 	#for action in card_actions:
 	for _i in range(0,4):
 		var new_action_ui = actionUI.instance()
-		new_action_ui.load_action("action_data")
+		new_action_ui.load_action("action_data", self)
 		vbox_ui.add_child(new_action_ui)
 	
+## solo usar mientras tenga dummy de datos provisional
 func connect_actions():
 	var ui_actions = get_all_ui_actions()
 	for action in ui_actions:
@@ -49,7 +49,6 @@ func get_all_ui_actions():
 	
 func toggle_menu():
 	is_showing = !is_showing
-	
 	GameHandler.update_ui_action_menu(self)
 	
 	if is_showing:

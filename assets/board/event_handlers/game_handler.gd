@@ -30,6 +30,7 @@ func _input(event):
 		if event.button_index == BUTTON_LEFT:
 			if !Rect2(Vector2(0,0),active_menu.get_rect_size()).has_point(event.position):
 				active_menu.toggle_menu()
-				print("Clicked at: ", event.position)
+				#DEBUG
+				#print("Clicked at: ", event.position)
 		 
 	

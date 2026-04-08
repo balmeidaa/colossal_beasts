@@ -13,7 +13,7 @@ func _ready():
 
 func init_card_ui():
 	load_action_menu()
-	action_menu.connect_actions()
+	action_menu.connect_actions() #provisional mientras se aun no se carga info desde archivo
 
 
 func _on_ClickableArea_input_event(_camera, event, _position, _normal, _shape_idx):
