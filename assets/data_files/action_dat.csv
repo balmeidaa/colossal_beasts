@@ -1,0 +1,4 @@
+id_action,name,action_type,subtype,objective,description,icon,action_function
+move,Move,move,,self,Move,action-move,move
+claw_swipe,Claw Swipe,attack,melee,enemy,Melee attack,action-melee,claw_swipe
+charge,Charge,"attack, move",,,Move then attack,,

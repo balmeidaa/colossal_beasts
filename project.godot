@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "CSVReader",
+"language": "GDScript",
+"path": "res://assets/util/csv_reader.gd"
+} ]
+_global_script_class_icons={
+"CSVReader": ""
+}
+
 [application]
 
 config/name="Colossal Beasts"
@@ -17,6 +27,7 @@ config/icon="res://double-dragon-icon.png"
 [autoload]
 
 GameHandler="*res://assets/board/event_handlers/game_handler.gd"
+GameData="*res://assets/board/event_handlers/game_data.gd"
 
 [gui]
 

@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/board/card_ui/ActionMenuScript.gd" type="Script" id=1]
-[ext_resource path="res://assets/board/card_ui/ActionUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/ui_textures/panel-border.png" type="Texture" id=3]
 [ext_resource path="res://assets/resources/main_theme.tres" type="Theme" id=4]
 
@@ -55,17 +54,4 @@ input_pass_on_modal_close_click = false
 scroll_horizontal_enabled = false
 
 [node name="VBox" type="VBoxContainer" parent="Control/Panel/Scroll"]
-margin_right = 100.0
-margin_bottom = 286.0
 custom_constants/separation = 30
-
-[node name="ActionUI" parent="Control/Panel/Scroll/VBox" instance=ExtResource( 2 )]
-margin_right = 100.0
-margin_bottom = 128.0
-size_flags_horizontal = 3
-
-[node name="ActionUI2" parent="Control/Panel/Scroll/VBox" instance=ExtResource( 2 )]
-margin_top = 158.0
-margin_right = 100.0
-margin_bottom = 286.0
-size_flags_horizontal = 3

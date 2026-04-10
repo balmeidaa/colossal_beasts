@@ -1,16 +1,24 @@
 extends Control
 
 signal action_selected
-export var a = 1
+
 var root_menu = null
+const format_path  = 'res://assets/icons/%s.png'
+
+var action_info = null
+####UI
+onready var title_label = $HBoxContainer/Title
+onready var icon_img = $HBoxContainer/Icon
 
 func _ready():
 	pass 
 
-func load_action(_action_data, menu_node):
+func load_action(action_data, menu_node):
 	root_menu = menu_node
-	pass
-	#print('loaded')
+	action_info = action_data
+	var icon_path = format_path % action_info['icon']
+	title_label.text = action_info['name']
+	icon_img.texture = load(icon_path)
 	
 
 func _on_ActionUI_gui_input(event):
@@ -19,5 +27,5 @@ func _on_ActionUI_gui_input(event):
 			emit_signal("action_selected")
 			if root_menu:
 				root_menu.toggle_menu()
-			#print('aa')
+
 

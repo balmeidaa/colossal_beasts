@@ -30,19 +30,21 @@ func _process(_delta):
 	if Input.is_action_pressed("ui_cancel") and is_showing:
 		toggle_menu()
 	
-func load_actions_ui(_card_actions):
+func load_actions_ui(card_actions):
 	#cargar de archivo acciones
 	#for action in card_actions:
-	for _i in range(0,4):
+	for action in card_actions:
 		var new_action_ui = actionUI.instance()
-		new_action_ui.load_action("action_data", self)
+		var action_data = GameData.action_list[action]
 		vbox_ui.add_child(new_action_ui)
+		new_action_ui.load_action(action_data, self)
+		
 	
 ## solo usar mientras tenga dummy de datos provisional
-func connect_actions():
-	var ui_actions = get_all_ui_actions()
-	for action in ui_actions:
-		action.connect("action_selected", self, "toggle_menu")
+#func connect_actions():
+#	var ui_actions = get_all_ui_actions()
+#	for action in ui_actions:
+#		action.connect("action_selected", self, "toggle_menu")
 
 func get_all_ui_actions():
 	return vbox_ui.get_children()
