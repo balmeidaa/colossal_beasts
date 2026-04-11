@@ -1,0 +1,4 @@
+id_card,type,name,health_points,action_moveset,description,icon
+string,string,string,int,array,string,string
+raptor,cunning,Giant Raptor,15,"move, claw_swipe, explosion",Giant Raptor,placeholder
+hydra,strength,Hydra,20,"move, explosion",,hydra

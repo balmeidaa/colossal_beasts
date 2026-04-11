@@ -9,9 +9,9 @@ func load_file(file_path):
 	
 	var dict = {}
 	
-	var keys = file.get_csv_line(",")
-	 
-	#var types = file.get_csv_line(",") ## quizas se necesite despues
+	var keys = file.get_csv_line(",") #cabeceras
+	var types = file.get_csv_line(",") #tipos de dato
+	
 	var lines = Array()
 	
 	while !file.eof_reached():
@@ -28,10 +28,30 @@ func load_file(file_path):
 		for index in range(1, keys.size()):
 			var key = keys[index]
 			var val = values[index]
-			obj[key] = val
+			obj[key] = cast_values(val, types[index])
 		
 		dict[id_key] = obj
 	
 	return dict
-		
-		
+	
+#cast de tipos de var basicos		
+func cast_values(value, type = 'string'):
+	if value.empty() or type == 'string':
+		return value
+	
+	match(type):
+		"float":
+			return float(value)
+		"int":
+			return int(value)
+		"bool":
+			if value == 'TRUE':
+				return true
+			return false
+		"array":
+			return cast_to_array(value)	
+
+func cast_to_array(array_string):
+	return array_string.replace(' ', '').split(',')
+	
+	

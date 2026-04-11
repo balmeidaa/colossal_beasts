@@ -31,13 +31,12 @@ func _process(_delta):
 		toggle_menu()
 	
 func load_actions_ui(card_actions):
-	#cargar de archivo acciones
-	#for action in card_actions:
+	var card_node = get_parent()
 	for action in card_actions:
 		var new_action_ui = actionUI.instance()
 		var action_data = GameData.action_list[action]
 		vbox_ui.add_child(new_action_ui)
-		new_action_ui.load_action(action_data, self)
+		new_action_ui.load_action(action_data, card_node, self)
 		
 	
 ## solo usar mientras tenga dummy de datos provisional
