@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/beast_img/placeholder.jpg" type="Texture" id=1]
+[ext_resource path="res://assets/beast_img/teryx.jpg" type="Texture" id=1]
 [ext_resource path="res://assets/board/card_ui/StatusContainer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/board/CardScript.gd" type="Script" id=3]
 [ext_resource path="res://assets/board/card_ui/ActionMenu.tscn" type="PackedScene" id=4]
@@ -14,7 +14,7 @@ viewport_path = NodePath("StatusViewport")
 
 [node name="Card" type="Sprite3D"]
 transform = Transform( -1, -8.74228e-08, 4.37114e-08, 4.37114e-08, 1.91069e-15, 1, -8.74228e-08, 1, 1.91069e-15, 0, 0, 0 )
-pixel_size = 0.017
+pixel_size = 0.011
 double_sided = false
 texture = ExtResource( 1 )
 script = ExtResource( 3 )

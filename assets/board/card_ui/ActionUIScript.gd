@@ -2,28 +2,32 @@ extends Control
 
 signal action_selected
 
-var action_taken = {
-	"card_node":null,
-	"action_info":null
-	
-}
 var root_menu = null
+var action_taken = {
+	"card_entity": null,
+	"action_icon": null,
+	"script_name": ''
+}
+
 
 ####UI
 onready var title_label = $HBoxContainer/Title
 onready var icon_img = $HBoxContainer/Icon
 
 func _ready():
-	pass 
+	add_to_group("actions_available")
+	connect("action_selected", GameHandler.action_queue, "add_ui_action_Q")
+	##auto conectarse
 
 func load_action(action_data, card_node, menu_node):
 	
-	action_taken["card_node"] = card_node
-	action_taken["action_info"] = action_data
+	action_taken["card_entity"] = card_node
+	action_taken["action_icon"] = action_data["icon"]
+	action_taken["script_name"] = action_data["script_name"]
 	root_menu = menu_node
 	
-	var icon_path = GameData.action_icon_path % action_data['icon']
 	title_label.text = action_data['name']
+	var icon_path = GameData.load_action_texture(action_data['icon'])
 	icon_img.texture = load(icon_path)
 	
 

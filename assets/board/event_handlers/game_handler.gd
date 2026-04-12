@@ -2,13 +2,14 @@ extends Node
 
 ## maneja todos los eventos dentro del juego
 var active_menu = null
+var action_queue = null
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-	##
-
+	pass
+	
+########
+### action menu
+########
 func update_ui_action_menu(menu_node):
 	# menu_activo es nulo se asigna
 	# menu es distinto se esconde el menu activo y cambia al nuevo
@@ -33,4 +34,4 @@ func _input(event):
 				#DEBUG
 				#print("Clicked at: ", event.position)
 		 
-	
+

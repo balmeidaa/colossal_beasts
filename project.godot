@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Colossal Beasts"
-run/main_scene="res://Test_main.tscn"
+run/main_scene="res://GameboardTemplate.tscn"
 config/icon="res://double-dragon-icon.png"
 
 [autoload]
