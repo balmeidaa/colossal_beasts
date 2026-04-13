@@ -28,14 +28,18 @@ current = true
 fov = 100.0
 near = 0.01
 
-[node name="Card" parent="." instance=ExtResource( 2 )]
-transform = Transform( -1, -8.74228e-08, 4.37114e-08, 4.37114e-08, 1.91069e-15, 1, -8.74228e-08, 1, 1.91069e-15, 16.4933, 0, 0 )
-
-[node name="Card2" parent="." instance=ExtResource( 2 )]
-transform = Transform( -1, -8.74228e-08, 4.37114e-08, 4.37114e-08, 1.91069e-15, 1, -8.74228e-08, 1, 1.91069e-15, 1.21904, 0, 0 )
-
-[node name="Card3" parent="." instance=ExtResource( 2 )]
-transform = Transform( -1, -8.74228e-08, 4.37114e-08, 4.37114e-08, 1.91069e-15, 1, -8.74228e-08, 1, 1.91069e-15, 16.4933, 0, -13.31 )
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
+
+[node name="PlayerCards" type="Spatial" parent="."]
+
+[node name="Card" parent="PlayerCards" instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 4.37114e-08, 4.37114e-08, 1.91069e-15, 1, -8.74228e-08, 1, 1.91069e-15, 16.4933, 0, 0 )
+
+[node name="Card2" parent="PlayerCards" instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 4.37114e-08, 4.37114e-08, 1.91069e-15, 1, -8.74228e-08, 1, 1.91069e-15, 1.21904, 0, 0 )
+
+[node name="Card3" parent="PlayerCards" instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 4.37114e-08, 4.37114e-08, 1.91069e-15, 1, -8.74228e-08, 1, 1.91069e-15, 16.4933, 0, -13.31 )
+
+[node name="OpponentCards" type="Spatial" parent="."]
