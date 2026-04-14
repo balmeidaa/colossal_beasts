@@ -23,7 +23,7 @@ script = ExtResource( 4 )
 [node name="ActionQueue" parent="." instance=ExtResource( 3 )]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -1, 8.74228e-08, 3.82137e-15, 1.34905e-08, 0.154314, 0.988022, 8.63756e-08, 0.988022, -0.154314, 5.75686, 18.9789, -4.98715 )
+transform = Transform( -1, 8.74228e-08, -5.3022e-14, 1.34905e-08, 0.154314, 0.988022, 8.63756e-08, 0.988022, -0.154314, 0, 20.979, -2 )
 current = true
 fov = 100.0
 near = 0.01
@@ -34,12 +34,21 @@ environment = SubResource( 2 )
 [node name="PlayerCards" type="Spatial" parent="."]
 
 [node name="Card" parent="PlayerCards" instance=ExtResource( 2 )]
-transform = Transform( -1, -8.74228e-08, 4.37114e-08, 4.37114e-08, 1.91069e-15, 1, -8.74228e-08, 1, 1.91069e-15, 16.4933, 0, 0 )
+transform = Transform( -0.5, -7.54979e-08, -6.60024e-15, 0, -2.18557e-08, 1, -7.54979e-08, 0.5, 4.37114e-08, 27, 0, 20 )
 
 [node name="Card2" parent="PlayerCards" instance=ExtResource( 2 )]
-transform = Transform( -1, -8.74228e-08, 4.37114e-08, 4.37114e-08, 1.91069e-15, 1, -8.74228e-08, 1, 1.91069e-15, 1.21904, 0, 0 )
+transform = Transform( -0.5, -7.54979e-08, -6.60024e-15, 0, -2.18557e-08, 1, -7.54979e-08, 0.5, 4.37114e-08, 27, 0, 4 )
 
 [node name="Card3" parent="PlayerCards" instance=ExtResource( 2 )]
-transform = Transform( -1, -8.74228e-08, 4.37114e-08, 4.37114e-08, 1.91069e-15, 1, -8.74228e-08, 1, 1.91069e-15, 16.4933, 0, -13.31 )
+transform = Transform( -0.5, -7.54979e-08, -6.60024e-15, 0, -2.18557e-08, 1, -7.54979e-08, 0.5, 4.37114e-08, 27, 0, -12 )
 
 [node name="OpponentCards" type="Spatial" parent="."]
+
+[node name="Card" parent="OpponentCards" instance=ExtResource( 2 )]
+transform = Transform( -0.5, -7.54979e-08, -6.60024e-15, 0, -2.18557e-08, 1, -7.54979e-08, 0.5, 4.37114e-08, -28, 0, 20 )
+
+[node name="Card2" parent="OpponentCards" instance=ExtResource( 2 )]
+transform = Transform( -0.5, -7.54979e-08, -6.60024e-15, 0, -2.18557e-08, 1, -7.54979e-08, 0.5, 4.37114e-08, -28, 0, 4 )
+
+[node name="Card3" parent="OpponentCards" instance=ExtResource( 2 )]
+transform = Transform( -0.5, -7.54979e-08, -6.60024e-15, 0, -2.18557e-08, 1, -7.54979e-08, 0.5, 4.37114e-08, -28, 0, -12 )

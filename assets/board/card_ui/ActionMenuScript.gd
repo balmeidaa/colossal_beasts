@@ -31,7 +31,7 @@ func _process(_delta):
 		toggle_menu()
 	
 func load_actions_ui(card_actions):
-	var card_node = get_parent()
+	var card_node = get_parent()  
 	for action in card_actions:
 		var new_action_ui = actionUI.instance()
 		var action_data = GameData.action_list[action]
