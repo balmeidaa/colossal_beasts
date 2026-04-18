@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/board/Card.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/board/event_handlers/TargetSolverScript.gd" type="Script" id=1]
 [ext_resource path="res://assets/board/ui/ActionQueue.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GameboardScript.gd" type="Script" id=4]
 
@@ -20,6 +20,9 @@ glow_enabled = true
 [node name="Gameboard" type="Spatial"]
 script = ExtResource( 4 )
 
+[node name="TargetSolver" type="Spatial" parent="."]
+script = ExtResource( 1 )
+
 [node name="ActionQueue" parent="." instance=ExtResource( 3 )]
 
 [node name="Camera" type="Camera" parent="."]
@@ -33,22 +36,22 @@ environment = SubResource( 2 )
 
 [node name="PlayerCards" type="Spatial" parent="."]
 
-[node name="Card" parent="PlayerCards" instance=ExtResource( 2 )]
-transform = Transform( -0.5, -7.54979e-08, -6.60024e-15, 0, -2.18557e-08, 1, -7.54979e-08, 0.5, 4.37114e-08, 27, 0, 20 )
+[node name="Top" type="Position3D" parent="PlayerCards"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, 20 )
 
-[node name="Card2" parent="PlayerCards" instance=ExtResource( 2 )]
-transform = Transform( -0.5, -7.54979e-08, -6.60024e-15, 0, -2.18557e-08, 1, -7.54979e-08, 0.5, 4.37114e-08, 27, 0, 4 )
+[node name="Mid" type="Position3D" parent="PlayerCards"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, 4 )
 
-[node name="Card3" parent="PlayerCards" instance=ExtResource( 2 )]
-transform = Transform( -0.5, -7.54979e-08, -6.60024e-15, 0, -2.18557e-08, 1, -7.54979e-08, 0.5, 4.37114e-08, 27, 0, -12 )
+[node name="Bottom" type="Position3D" parent="PlayerCards"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, -12 )
 
 [node name="OpponentCards" type="Spatial" parent="."]
 
-[node name="Card" parent="OpponentCards" instance=ExtResource( 2 )]
-transform = Transform( -0.5, -7.54979e-08, -6.60024e-15, 0, -2.18557e-08, 1, -7.54979e-08, 0.5, 4.37114e-08, -28, 0, 20 )
+[node name="Top" type="Position3D" parent="OpponentCards"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 20 )
 
-[node name="Card2" parent="OpponentCards" instance=ExtResource( 2 )]
-transform = Transform( -0.5, -7.54979e-08, -6.60024e-15, 0, -2.18557e-08, 1, -7.54979e-08, 0.5, 4.37114e-08, -28, 0, 4 )
+[node name="Mid" type="Position3D" parent="OpponentCards"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 4 )
 
-[node name="Card3" parent="OpponentCards" instance=ExtResource( 2 )]
-transform = Transform( -0.5, -7.54979e-08, -6.60024e-15, 0, -2.18557e-08, 1, -7.54979e-08, 0.5, 4.37114e-08, -28, 0, -12 )
+[node name="Bottom" type="Position3D" parent="OpponentCards"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, -12 )

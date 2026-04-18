@@ -1,8 +1,34 @@
 extends Spatial
 
+var card_maker = load("res://assets/board/Card.tscn")
+onready var player_cards = $PlayerCards
+onready var opponent_cards = $OpponentCards
+## posiciones iniciales de las cartas
+var player_cards_pos = [] 
+var opponent_cards_pos = []
 
+#inyectar nombres de cartas
 func _ready():
-	$PlayerCards/Card.load_card(GameData.card_list['hydra']) #test purp
+	player_cards_pos = player_cards.get_children()
+	opponent_cards_pos = opponent_cards.get_children()
 
 
-
+## para evitar bugs 
+## 1. crear instancia
+## 2. agregar instancia
+## 3. cargar datos
+func _add_card(card_name, entity = 'player'):
+	var new_card = card_maker.new()
+	var card_position = null
+	if entity == 'player':
+		player_cards.add_child(new_card)
+		card_position = player_cards_pos.pop_back()
+		new_card.add_to_group("player_cards")
+	else:
+		opponent_cards.add_child(new_card)
+		card_position = opponent_cards_pos.pop_back()
+		new_card.add_to_group("opponent_cards")
+		
+	new_card.load_card(card_name, entity)
+	new_card.global_positon = card_position.global_position
+	

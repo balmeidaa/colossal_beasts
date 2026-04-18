@@ -3,6 +3,7 @@ extends Node
 ## maneja todos los eventos dentro del juego
 var active_menu = null
 var action_queue = null
+var target_solver = null
 
 func _ready():
 	pass
@@ -26,7 +27,8 @@ func update_ui_action_menu(menu_node):
 func _input(event):
 	if active_menu == null:
 		return
-	
+		#TODO
+	# tal vez resetear el target solver si no obtiene click en ningun objeto valido
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == BUTTON_LEFT:
 			if !Rect2(Vector2(0,0),active_menu.get_rect_size()).has_point(event.position):
