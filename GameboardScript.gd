@@ -12,13 +12,17 @@ func _ready():
 	player_cards_pos = player_cards.get_children()
 	opponent_cards_pos = opponent_cards.get_children()
 
+	##TEST PURPOSES ONLY
+	for _i in range(3):
+		_add_card('teryx')
+		_add_card('hydra', 'opponent')
 
 ## para evitar bugs 
 ## 1. crear instancia
 ## 2. agregar instancia
 ## 3. cargar datos
 func _add_card(card_name, entity = 'player'):
-	var new_card = card_maker.new()
+	var new_card = card_maker.instance()
 	var card_position = null
 	if entity == 'player':
 		player_cards.add_child(new_card)
@@ -30,5 +34,5 @@ func _add_card(card_name, entity = 'player'):
 		new_card.add_to_group("opponent_cards")
 		
 	new_card.load_card(card_name, entity)
-	new_card.global_positon = card_position.global_position
+	new_card.translation = card_position.translation
 	

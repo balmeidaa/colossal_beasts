@@ -1,7 +1,5 @@
 extends Control
 
-signal action_selected
-
 var root_menu = null
 var action_taken = {
 	"card_played": null,
@@ -17,9 +15,9 @@ onready var title_label = $HBoxContainer/Title
 onready var icon_img = $HBoxContainer/Icon
 
 func _ready():
-
+	pass
 	##conectarse a otro nodo que se encarge de manejar objetivos (i.e. movimiento, enemigos , etc)
-	connect("action_selected", GameHandler.target_solver, "acquire_target")
+	#connect("action_selected", GameHandler.target_solver, "acquire_target")
 	##auto conectarse
 
 func load_action(action_data, card_node, menu_node):
@@ -38,7 +36,8 @@ func load_action(action_data, card_node, menu_node):
 func _on_ActionUI_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
-			emit_signal("action_selected", action_taken) #cablear estas señales a un handler de accion del turno
+			GameHandler.target_solver.establish_action(action_taken)
+			#emit_signal("action_selected", action_taken) #cablear estas señales a un handler de accion del turno
 			if root_menu:
 				root_menu.toggle_menu()
 

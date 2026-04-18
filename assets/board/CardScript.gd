@@ -27,7 +27,7 @@ func _on_ClickableArea_input_event(_camera, event, _position, _normal, _shape_id
 			if event.button_index == BUTTON_LEFT and event.pressed:
 				if GameHandler.target_solver.input_active:
 					GameHandler.target_solver.selected_target = self
-				elif  self.is_in_group('player_cards'):
+				elif self.is_in_group('player_cards'):
 					action_menu.toggle_menu()
 	return null
 

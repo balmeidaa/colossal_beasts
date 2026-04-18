@@ -8,7 +8,7 @@ var card_owner = null
 
 func load_mini(action_dat, initiative_order, new_owner = 'player'):
 	card_owner = new_owner
-	var card_image = action_dat['card_entity'].get_img_card()
+	var card_image = action_dat['card_played'].get_img_card()
 	var img_card = GameData.card_img_path % card_image
 	var action_icon = GameData.action_icon_path % action_dat['action_icon']
 	

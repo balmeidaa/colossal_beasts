@@ -9,10 +9,9 @@ var action_list = {}
 
 func _ready():
 	var reader = CSVReader.new()
-	## cambiar dat to cat
-	var res = reader.load_file("res://assets/data_files/action_dat.po")
+	var res = reader.load_file("res://assets/data_files/action_cat.po")
 	GameData.action_list = res
-	res = reader.load_file("res://assets/data_files/card_dat.po")
+	res = reader.load_file("res://assets/data_files/card_cat.po")
 	GameData.card_list = res
 	
 #	var pretty = JSON.print(res, "\t")

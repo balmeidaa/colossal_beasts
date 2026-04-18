@@ -16,38 +16,63 @@ func _ready():
 #de lo contrario resetear
 
 func _process(_delta):
-	pass
+	if input_active == false:
+		return
 	
+	if action_saved['objective_type'] == 'self':
+		GameHandler.action_queue.add_ui_action_Q(action_saved)
+		reset_state()
+		return
+	
+	if selected_target:
+		var ok_target = verify_identity(action_saved['objective_type'], selected_target)
+		if  ok_target:
+			action_saved['target'] = selected_target
+			GameHandler.action_queue.add_ui_action_Q(action_saved)
+			
+		reset_state()
+
+		
+		
+		
+
 func _input(event):
 	if input_active == false:
 		return
+	#TODO
+	# tal vez resetear el target solver si no obtiene click en ningun objeto valido
+	# cancelar si usuario hace clic y no hay objetivo seleccionado
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == BUTTON_LEFT:
+			print(selected_target)
+			#input_active = false
+	
+
 	#target solver no tendria q procesar input para evitar bogs
 
 ##resolver orden de eventos!!!
-func acquire_target(action):
-	action_saved = action
-	input_active = true
 	#revisar origen de carta y obtener el jugador
 	#obtener objetivo, si es asi mismo enviar a cola de acciones
 	#si es enemigo o nueva locacion guardarla
 	#enviar a cola
-	match(action['objective_type']):
-		'self':
-			GameHandler.action_queue.add_ui_action_Q(action)
-			reset_state()
-		'ally':
-			pass
-		'enemy':
-			pass
-		_:
-			pass
 	
-	action['action_by'] = establish_identity(action)
+	
+func establish_action(action):
+	action_saved = action
+	input_active = true
 
 
-func establish_identity(objetive_type): 
-	#if card_entity.is_in_group('player_cards'):
-	return
+
+func verify_identity(objective_type, target):
+	match(objective_type):
+		'ally':
+			return target.is_in_group('player_cards')
+		'enemy':
+			return target.is_in_group('opponent_cards')
+		_:
+			print('Something wrong')
+	#
+	return false
 	
 func reset_state()	:
 	action_saved = null
