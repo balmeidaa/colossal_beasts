@@ -4,15 +4,15 @@ extends CanvasLayer
 onready var player_q_ui = $HBox/Player
 onready var opponent_q_ui = $HBox/Opponent
 
-var mini_card = preload("res://assets/board/ui/CardMini.tscn")
+var mini_card = preload("res://board/ui/CardMini.tscn")
 
 const max_q_size = 3
 
 var player_q = []
 var opponent_q = []
 
-func _ready():
-	GameHandler.action_queue = self
+#func _ready():
+#	GameHandler.action_queue = self
 
 func add_ui_action_Q(action_taken, entity = 'player'):
 	

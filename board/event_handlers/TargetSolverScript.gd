@@ -26,26 +26,26 @@ func _process(_delta):
 	
 	if selected_target:
 		var ok_target = verify_identity(action_saved['objective_type'], selected_target)
+		print(ok_target)
 		if  ok_target:
 			action_saved['target'] = selected_target
-			GameHandler.action_queue.add_ui_action_Q(action_saved)
+			action_saved["card_played"].decrease_actions_remaining()
+			GameHandler.turn_system.add_action(action_saved)
 			
 		reset_state()
 
-		
-		
-		
-
-func _input(event):
-	if input_active == false:
-		return
+#func _input(event):
+#	if input_active == false:
+#		return
 	#TODO
 	# tal vez resetear el target solver si no obtiene click en ningun objeto valido
 	# cancelar si usuario hace clic y no hay objetivo seleccionado
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == BUTTON_LEFT:
-			print(selected_target)
-			#input_active = false
+	#aqui no cancelar la accion, ya que no detecta si objetivo fue seleccionado (este evento pasa primero)
+	
+#	if event is InputEventMouseButton and event.pressed:
+#		if event.button_index == BUTTON_LEFT:
+#			print(selected_target)
+#			#input_active = false
 	
 
 	#target solver no tendria q procesar input para evitar bogs
@@ -60,6 +60,7 @@ func _input(event):
 func establish_action(action):
 	action_saved = action
 	input_active = true
+	
 
 
 
@@ -69,7 +70,7 @@ func verify_identity(objective_type, target):
 			return target.is_in_group('player_cards')
 		'enemy':
 			return target.is_in_group('opponent_cards')
-		_:
+		_: #falta implementar objetivo de area, y objetivo libre
 			print('Something wrong')
 	#
 	return false
@@ -77,3 +78,4 @@ func verify_identity(objective_type, target):
 func reset_state()	:
 	action_saved = null
 	input_active = false
+	selected_target = null

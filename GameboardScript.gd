@@ -1,11 +1,12 @@
 extends Spatial
 
-var card_maker = load("res://assets/board/Card.tscn")
+var card_maker = load("res://board/Card.tscn")
 onready var player_cards = $PlayerCards
 onready var opponent_cards = $OpponentCards
 ## posiciones iniciales de las cartas
 var player_cards_pos = [] 
 var opponent_cards_pos = []
+
 
 #inyectar nombres de cartas
 func _ready():
@@ -16,6 +17,8 @@ func _ready():
 	for _i in range(3):
 		_add_card('teryx')
 		_add_card('hydra', 'opponent')
+	
+	GameHandler.emit_signal('game_ready', 'PRECOMBAT')
 
 ## para evitar bugs 
 ## 1. crear instancia

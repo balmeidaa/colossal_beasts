@@ -9,6 +9,7 @@ var action_taken = {
 	"script_name": ''
 }
 
+var parent_card = null
 
 ####UI
 onready var title_label = $HBoxContainer/Title
@@ -21,7 +22,7 @@ func _ready():
 	##auto conectarse
 
 func load_action(action_data, card_node, menu_node):
-	
+	parent_card = card_node
 	action_taken["card_played"] = card_node
 	action_taken["action_icon"] = action_data["icon"]
 	action_taken["script_name"] = action_data["script_name"]
@@ -34,6 +35,10 @@ func load_action(action_data, card_node, menu_node):
 	
 
 func _on_ActionUI_gui_input(event):
+	# no hay mas acciones disponible para el jugador
+	if not parent_card and not parent_card.can_play_action():
+		return
+		
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			GameHandler.target_solver.establish_action(action_taken)

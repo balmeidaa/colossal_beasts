@@ -5,7 +5,7 @@ onready var tween = $Tween
 onready var control_ui = $Control
 onready var vbox_ui = $Control/Panel/Scroll/VBox
 
-var actionUI := preload("res://assets/board/card_ui/ActionUI.tscn")
+var actionUI := preload("res://board/card_ui/ActionUI.tscn")
 
 export var anim_time := 1.0
 
@@ -17,7 +17,6 @@ var show_pos := 0.0
 
 func _ready():
 # TODO  Si este menu no pertenece al jugador, esconder menu
-
 	viewport_size = get_viewport().size
 	control_ui.rect_position.x =  - viewport_size.x 
 	hide_pos = control_ui.rect_position.x -  viewport_size.x

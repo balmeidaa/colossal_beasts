@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/board/card_ui/ActionMenuScript.gd" type="Script" id=1]
+[ext_resource path="res://board/card_ui/ActionMenuScript.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui_textures/panel-border.png" type="Texture" id=3]
 [ext_resource path="res://assets/resources/main_theme.tres" type="Theme" id=4]
 

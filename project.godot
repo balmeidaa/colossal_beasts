@@ -26,8 +26,8 @@ config/icon="res://double-dragon-icon.png"
 
 [autoload]
 
-GameHandler="*res://assets/board/event_handlers/game_handler.gd"
-GameData="*res://assets/board/event_handlers/game_data.gd"
+GameHandler="*res://board/event_handlers/game_handler.gd"
+GameData="*res://board/event_handlers/game_data.gd"
 
 [gui]
 
