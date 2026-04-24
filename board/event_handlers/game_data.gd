@@ -2,7 +2,10 @@ extends Node
 
 const action_icon_path  = 'res://assets/icons/%s.png'
 const card_img_path = 'res://assets/beast_img/%s.jpg'
+const scripts_path = 'res://board/action_scripts/%s.gd'
 
+##para la maquina de estados
+enum States {IDLE, PRECOMBAT, TURN, POSTCOMBAT}
 
 var card_list = {}
 var action_list = {}

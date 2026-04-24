@@ -5,6 +5,11 @@ onready var action_menu = $ActionMenu
 
 var actions_remaining = 2
 var card_info = {}
+var modifiers = {
+	'pre':{},
+	'in':{},
+	'post':{}
+}
 
 func _ready():
 	pass

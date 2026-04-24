@@ -29,8 +29,9 @@ func _process(_delta):
 		print(ok_target)
 		if  ok_target:
 			action_saved['target'] = selected_target
-			action_saved["card_played"].decrease_actions_remaining()
-			GameHandler.turn_system.add_action(action_saved)
+			## Solo si fue exitoso la adicion de accion a la cola se resta puntos de accion
+			if GameHandler.turn_system.add_action(action_saved):
+				action_saved["card_played"].decrease_actions_remaining()
 			
 		reset_state()
 

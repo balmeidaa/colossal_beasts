@@ -6,8 +6,8 @@ var turn_system = null
 var target_solver = null
 
 signal game_ready
-signal game_over
-signal next_turn
+#signal game_over
+#signal next_turn
 
 
 func _ready():

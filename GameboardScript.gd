@@ -18,7 +18,7 @@ func _ready():
 		_add_card('teryx')
 		_add_card('hydra', 'opponent')
 	
-	GameHandler.emit_signal('game_ready', 'PRECOMBAT')
+	GameHandler.emit_signal('game_ready', GameData.States.PRECOMBAT)
 
 ## para evitar bugs 
 ## 1. crear instancia
