@@ -1,14 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/beast_img/teryx.jpg" type="Texture" id=1]
-[ext_resource path="res://board/card_ui/BuffContainer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://board/CardScript.gd" type="Script" id=3]
 [ext_resource path="res://board/card_ui/ActionMenu.tscn" type="PackedScene" id=4]
-[ext_resource path="res://board/CardViewportScript.gd" type="Script" id=5]
+[ext_resource path="res://board/card_ui/CardDisplayUI.tscn" type="PackedScene" id=6]
 
-[sub_resource type="ViewportTexture" id=1]
-flags = 4
-viewport_path = NodePath("BuffViewport")
+[sub_resource type="ViewportTexture" id=3]
+viewport_path = NodePath("DisplayViewport")
 
 [sub_resource type="BoxShape" id=2]
 
@@ -19,28 +17,18 @@ double_sided = false
 texture = ExtResource( 1 )
 script = ExtResource( 3 )
 
-[node name="BuffViewport" type="Viewport" parent="."]
-size = Vector2( 500, 500 )
+[node name="DisplayViewport" type="Viewport" parent="."]
+size = Vector2( 800, 600 )
 transparent_bg = true
 handle_input_locally = false
-msaa = 2
-fxaa = true
-sharpen_intensity = 0.5
-hdr = false
-usage = 0
-render_target_v_flip = true
-gui_snap_controls_to_pixels = false
-script = ExtResource( 5 )
 
-[node name="BuffContainer" parent="BuffViewport" instance=ExtResource( 2 )]
+[node name="CardDisplay" parent="DisplayViewport" instance=ExtResource( 6 )]
 
-[node name="BuffHUD" type="Sprite3D" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, -4.23516e-22, 0, 2, 17.096, 5.71587, 1.63076e-07 )
+[node name="Display" type="Sprite3D" parent="."]
 sorting_offset = 5.0
-pixel_size = 0.03
-double_sided = false
-render_priority = 2
-texture = SubResource( 1 )
+flip_v = true
+pixel_size = 0.05
+texture = SubResource( 3 )
 
 [node name="ActionMenu" parent="." instance=ExtResource( 4 )]
 

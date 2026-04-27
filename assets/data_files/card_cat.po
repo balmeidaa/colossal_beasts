@@ -1,4 +1,4 @@
-id_card,type,name,health_points,action_moveset,description,icon
+id_card,type,name,base_hitpoints,action_moveset,description,image
 string,string,string,int,array,string,string
-teryx,cunning,Giant Raptor,15,"move, claw_swipe, explosion",Giant Raptor,teryx
+teryx,cunning,Giant Raptor,15,"move, claw_swipe, increase_defense",Giant Raptor,teryx
 hydra,strength,Hydra,20,"move, explosion",,hydra

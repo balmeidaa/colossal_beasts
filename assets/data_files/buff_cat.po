@@ -1,0 +1,3 @@
+id_buff,name,description,type,trigger_time,turn_counter,script_name
+string,string,string,string,string,int,string
+increase_defense,Thick Skin,Increases Defense in 2 every turn,BUFF,PRECOMBAT,3,increase_defense

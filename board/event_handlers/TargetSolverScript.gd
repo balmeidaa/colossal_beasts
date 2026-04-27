@@ -19,14 +19,16 @@ func _process(_delta):
 	if input_active == false:
 		return
 	
+	#implementar diferenciacion de movimiento
+	
 	if action_saved['objective_type'] == 'self':
-		GameHandler.action_queue.add_ui_action_Q(action_saved)
+		GameHandler.turn_system.add_action(action_saved)
 		reset_state()
 		return
 	
 	if selected_target:
 		var ok_target = verify_identity(action_saved['objective_type'], selected_target)
-		print(ok_target)
+
 		if  ok_target:
 			action_saved['target'] = selected_target
 			## Solo si fue exitoso la adicion de accion a la cola se resta puntos de accion

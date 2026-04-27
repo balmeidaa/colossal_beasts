@@ -4,11 +4,13 @@ const action_icon_path  = 'res://assets/icons/%s.png'
 const card_img_path = 'res://assets/beast_img/%s.jpg'
 const scripts_path = 'res://board/action_scripts/%s.gd'
 
+
 ##para la maquina de estados
 enum States {IDLE, PRECOMBAT, TURN, POSTCOMBAT}
 
 var card_list = {}
 var action_list = {}
+var buff_list = {}
 
 func _ready():
 	var reader = CSVReader.new()
@@ -16,9 +18,11 @@ func _ready():
 	GameData.action_list = res
 	res = reader.load_file("res://assets/data_files/card_cat.po")
 	GameData.card_list = res
+	res = reader.load_file("res://assets/data_files/buff_cat.po")
+	GameData.buff_list = res
 	
-#	var pretty = JSON.print(res, "\t")
-#	print(res['raptor']['action_moveset'])
+#	var pretty = JSON.print(GameData.action_list, "\t")
+#	print(pretty)
 
 func load_card_texture(filename):
 	return GameData.card_img_path % filename

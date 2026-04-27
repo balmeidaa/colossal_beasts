@@ -10,11 +10,17 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "BaseAction",
+"language": "GDScript",
+"path": "res://board/action_scripts/BaseActionScript.gd"
+}, {
+"base": "Node",
 "class": "CSVReader",
 "language": "GDScript",
 "path": "res://assets/util/csv_reader.gd"
 } ]
 _global_script_class_icons={
+"BaseAction": "",
 "CSVReader": ""
 }
 

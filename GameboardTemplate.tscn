@@ -9,13 +9,14 @@
 sky_top_color = Color( 0.0235294, 0.654902, 1, 1 )
 sky_horizon_color = Color( 0.137255, 0.227451, 0.298039, 1 )
 sky_curve = 0.28245
-ground_bottom_color = Color( 0.972549, 0.972549, 0.972549, 1 )
-ground_horizon_color = Color( 0.713726, 0.713726, 0.713726, 1 )
+ground_bottom_color = Color( 0.780392, 0.776471, 0.776471, 1 )
+ground_horizon_color = Color( 0.258824, 0.192157, 0.192157, 1 )
+ground_energy = 1.3
 
 [sub_resource type="Environment" id=2]
 background_mode = 2
 background_sky = SubResource( 1 )
-ambient_light_color = Color( 0.854902, 0.854902, 0.854902, 1 )
+ambient_light_color = Color( 0.945098, 0.941176, 0.941176, 1 )
 glow_enabled = true
 
 [node name="Gameboard" type="Spatial"]

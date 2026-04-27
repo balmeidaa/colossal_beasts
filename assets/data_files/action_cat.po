@@ -2,4 +2,4 @@ id_action,name,action_type,subtype,objective,description,icon,script_name
 string,string,string,string,string,string,string,string
 move,Move,move,,self,Move,action-move,move
 claw_swipe,Claw Swipe,attack,melee,enemy,Melee attack,action-melee,claw_swipe
-explosion,bright_explosion,"attack, move",,,Explosion attack,bright-explosion,explosion_tak
+increase_defense,Defense UP,buff,,self,Explosion attack,armor-upgrade,increase_defense

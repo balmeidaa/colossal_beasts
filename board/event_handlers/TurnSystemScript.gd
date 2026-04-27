@@ -1,7 +1,9 @@
 extends Node
 
 
+var buff_helper = load('res://board/action_scripts/BaseActionScript.gd').new()
 
+const BUFF = 'buff'
 ##variables de control de turno
 var state = GameData.States.IDLE
 var active_turn = ''
@@ -44,6 +46,14 @@ func process_action():
 		return
 		
 	var action_dat = action_q.pop_front()
+	## Aplicar directamente buffs y salir
+	if action_dat['action_type'] ==  BUFF:
+		if action_dat['objective_type'] == 'self':
+			buff_helper.set_buff(action_dat['card_played'], action_dat['script_name'])
+		else:
+			buff_helper.set_buff(action_dat['target'], action_dat['script_name'])
+		return
+			
 	var file_name = GameData.scripts_path % action_dat['script_name']
 	var action_func = load(file_name).new()
 	action_func.execute(action_dat)

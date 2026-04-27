@@ -1,12 +1,7 @@
-extends Node
-
-
-#crear scripts basicos
-#daño
-#movimiento
-#buff/debuff
-#formula daño
-# (daño * mod_mult) + mod_sum
+extends BaseAction
 
 func execute(action_dat):
-	print('ulala')
+	deal_damage(action_dat['target'], 2)
+#	var pretty = JSON.print(action_dat, "\t")
+#	print(pretty)
+#	print(GameData.action_list['move'])

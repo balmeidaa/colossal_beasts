@@ -3,7 +3,6 @@ extends Control
 var root_menu = null
 var action_taken = {
 	"card_played": null,
-	"objetive": null, #objeto en juego
 	"objective_type": null,#tipo de objetivo
 	"action_icon": null,
 	"script_name": ''
@@ -23,10 +22,15 @@ func _ready():
 
 func load_action(action_data, card_node, menu_node):
 	parent_card = card_node
+
 	action_taken["card_played"] = card_node
+	action_taken["action_type"] = action_data["action_type"]
+	if action_data.has('subtype'):
+		action_taken["subtype"] = action_data["subtype"]
 	action_taken["action_icon"] = action_data["icon"]
 	action_taken["script_name"] = action_data["script_name"]
 	action_taken["objective_type"] = action_data["objective"]
+	
 	root_menu = menu_node
 	
 	title_label.text = action_data['name']

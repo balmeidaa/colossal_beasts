@@ -12,7 +12,7 @@ var opponent_cards_pos = []
 func _ready():
 	player_cards_pos = player_cards.get_children()
 	opponent_cards_pos = opponent_cards.get_children()
-
+	
 	##TEST PURPOSES ONLY
 	for _i in range(3):
 		_add_card('teryx')

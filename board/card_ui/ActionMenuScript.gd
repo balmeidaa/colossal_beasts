@@ -37,12 +37,6 @@ func load_actions_ui(card_actions):
 		vbox_ui.add_child(new_action_ui)
 		new_action_ui.load_action(action_data, card_node, self)
 		
-	
-## solo usar mientras tenga dummy de datos provisional
-#func connect_actions():
-#	var ui_actions = get_all_ui_actions()
-#	for action in ui_actions:
-#		action.connect("action_selected", self, "toggle_menu")
 
 func get_all_ui_actions():
 	return vbox_ui.get_children()
