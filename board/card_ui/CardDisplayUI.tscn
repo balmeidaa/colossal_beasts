@@ -1,18 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/icons/ui-hp.png" type="Texture" id=1]
+[ext_resource path="res://assets/icons/heart-beats.png" type="Texture" id=1]
 [ext_resource path="res://assets/icons/ui_ap.png" type="Texture" id=2]
-[ext_resource path="res://assets/icons/ui-defense.png" type="Texture" id=3]
-[ext_resource path="res://assets/icons/target-dummy.svg" type="Texture" id=4]
+[ext_resource path="res://assets/icons/shield.png" type="Texture" id=3]
+[ext_resource path="res://board/card_ui/Icon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://board/card_ui/CardDisplayUI.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFontData" id=2]
 font_path = "res://assets/fonts/nobilty.ttf"
-
-[sub_resource type="DynamicFont" id=3]
-size = 60
-use_filter = true
-font_data = SubResource( 2 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -23,23 +18,25 @@ font_data = SubResource( 2 )
 [node name="CardDisplay" type="CanvasLayer"]
 script = ExtResource( 5 )
 
-[node name="Grid" type="GridContainer" parent="."]
+[node name="HBox" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-input_pass_on_modal_close_click = false
+margin_left = 60.0
+margin_top = 50.0
+margin_right = -80.0
+margin_bottom = -50.0
+
+[node name="VBox" type="VBoxContainer" parent="HBox"]
+margin_right = 440.0
+margin_bottom = 500.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/vseparation = -10
-custom_constants/hseparation = -40
-columns = 2
 
-[node name="AP" type="TextureRect" parent="Grid"]
-margin_left = 202.0
-margin_top = 88.0
-margin_right = 330.0
-margin_bottom = 216.0
+[node name="AP" type="TextureRect" parent="HBox/VBox"]
+margin_left = 156.0
+margin_top = 18.0
+margin_right = 284.0
+margin_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 128, 128 )
@@ -49,39 +46,26 @@ texture = ExtResource( 2 )
 expand = true
 stretch_mode = 1
 
-[node name="Counter" type="Label" parent="Grid/AP"]
+[node name="Counter" type="Label" parent="HBox/VBox/AP"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -20.5
+margin_left = -41.0
 margin_top = -33.0
-margin_right = 20.5
+margin_right = 41.0
 margin_bottom = 33.0
-custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
 text = "0"
 align = 1
 valign = 1
 
-[node name="BuffsActive" type="TextureRect" parent="Grid"]
-margin_left = 694.0
-margin_top = 88.0
-margin_right = 822.0
-margin_bottom = 216.0
-grow_horizontal = 2
-grow_vertical = 2
-rect_min_size = Vector2( 128, 128 )
-size_flags_horizontal = 6
-size_flags_vertical = 6
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 1
-
-[node name="Defense" type="TextureRect" parent="Grid"]
-margin_left = 202.0
-margin_top = 383.0
-margin_right = 330.0
-margin_bottom = 511.0
+[node name="Def" type="TextureRect" parent="HBox/VBox"]
+margin_left = 156.0
+margin_top = 186.0
+margin_right = 284.0
+margin_bottom = 314.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 128, 128 )
@@ -91,7 +75,7 @@ texture = ExtResource( 3 )
 expand = true
 stretch_mode = 1
 
-[node name="Counter" type="Label" parent="Grid/Defense"]
+[node name="Counter" type="Label" parent="HBox/VBox/Def"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -106,11 +90,11 @@ text = "0"
 align = 1
 valign = 1
 
-[node name="HP" type="TextureRect" parent="Grid"]
-margin_left = 694.0
-margin_top = 383.0
-margin_right = 822.0
-margin_bottom = 511.0
+[node name="HP" type="TextureRect" parent="HBox/VBox"]
+margin_left = 156.0
+margin_top = 354.0
+margin_right = 284.0
+margin_bottom = 482.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 128, 128 )
@@ -120,7 +104,7 @@ texture = ExtResource( 1 )
 expand = true
 stretch_mode = 1
 
-[node name="Counter" type="Label" parent="Grid/HP"]
+[node name="Counter" type="Label" parent="HBox/VBox/HP"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -134,3 +118,19 @@ custom_fonts/font = SubResource( 1 )
 text = "0"
 align = 1
 valign = 1
+
+[node name="BuffBox" type="GridContainer" parent="HBox"]
+margin_left = 444.0
+margin_right = 884.0
+margin_bottom = 500.0
+grow_horizontal = 0
+grow_vertical = 0
+input_pass_on_modal_close_click = false
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Icon" parent="HBox/BuffBox" instance=ExtResource( 4 )]
+margin_left = 170.0
+margin_top = 200.0
+margin_right = 270.0
+margin_bottom = 300.0

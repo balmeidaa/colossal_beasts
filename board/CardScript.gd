@@ -9,17 +9,9 @@ var card_info = {}
 ## TODO
 ## mejorar esta estructura
 ## HUD para defensa y puntos de salud, puntos de accion
-var modifiers = {
+var modifiers = {}
 
-}
 
-#"buff_ex":{ #ejemplo de buff
-#	"script_name":"increase_defense",
-#	"trigger_event":"PRECOMBAT",
-#	"turn_counter": 3,
-#	"type":"BUFF" # buff positivo/ debuff negativo
-#
-#}
 
 func _ready():
 	pass
