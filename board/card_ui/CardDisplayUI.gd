@@ -8,7 +8,6 @@ onready var hp_ui = $HBox/VBox/HP
 onready var buff_box_ui = $HBox/BuffBox
 
 var owner_card = null
-var ui_buffs = []
 
 const show = Color(1.0, 1.0, 1.0, 1.0)
 const hidden = Color(1.0, 1.0, 1.0, 0.0)
@@ -19,44 +18,43 @@ func _ready():
 	#esconder defensa y bufos activos si no estan activos
 	def_ui.modulate = hidden
 	
-func update_all():
+func update_stats():
 	if owner_card == null:
 		return
+			
 	var ap = owner_card.actions_remaining
 	var def = owner_card.card_info['defense']
 	var hp = owner_card.card_info['current_hp']
-	var mods = owner_card.modifiers
 	
-	
-	
-	## buff despues
 	ap_ui.get_node("Counter").text = String(ap)
 	hp_ui.get_node("Counter").text = String(hp)
-
+	
 	if def > 0:
 		def_ui.get_node("Counter").text = String(def)
 		def_ui.modulate = show
 	else:
 		def_ui.modulate = hidden
 	
+func update_mods():
+	if owner_card == null:
+		return
+	var mods = owner_card.modifiers
+	
+	var ui_buffs = []
+
+	for child in buff_box_ui.get_children():
+		ui_buffs.append(child.name)
+	
 	##desactivar en caso de estar vacio
 	if mods.empty() and ui_buffs.size() > 0:
 		for icon in buff_box_ui.get_children():
 			icon.queue_free()
 	else:
-		process_mods(mods)
+		process_mods(mods, ui_buffs)
 		
-#"buff_ex":{ #ejemplo de buff
-#	"script_name":"increase_defense",
-#	"trigger_event":"PRECOMBAT",
-#	"turn_counter": 3,
-#	"type":"BUFF" # buff positivo/ debuff negativo
-	#"icon"
-#
-#}	
-##solo agregar o cambiar el texto de buffs
-##eliminar primero buffs de la UI y despues del dict en la clase card
-func process_mods(mods):
+
+## actualiza buffs activos de la carta a la UI
+func process_mods(mods, active_buffs_ui):
 	var to_be_removed = []
 	var current_buffs_keys = mods.keys()
 	##remover buff ya expirados
@@ -71,39 +69,58 @@ func process_mods(mods):
 		mods.erase(buff)
 		buff_box_ui.get_node(buff).queue_free()
 		
-	var new_buffs = get_new_buffs(current_buffs_keys)
-
+	var new_buffs = get_new_buffs(current_buffs_keys, active_buffs_ui)
+	## agrega buffs nuevos
 	for buff in new_buffs:
 		var icon_buff = icon_factory.instance()
 		buff_box_ui.add_child(icon_buff)
 		var initial_counter = mods['buff']['turn_counter']
 		icon_buff.load_buff(buff, initial_counter)
 	
+	##Elimina buffs eliminados por accion del oponente
+	var deleted_buffs = get_removed_buffs(current_buffs_keys, active_buffs_ui)
+	remove_buffs(deleted_buffs)
+	
 
-##ui_buffs son buff en BuffBox
+##active_buff_ui son buff en BuffBox
 ##current_buffs son buffos de carta
 ##esta funcion revisa si hay diferencias entre buffos PARA AGREGARLOS
-func get_new_buffs(current_buffs):
+func get_new_buffs(current_buffs, active_buff_ui):
 	var new_buffs = []
 	
-	ui_buffs.sort()
+	active_buff_ui.sort()
 	current_buffs.sort()
 	
-	if current_buffs == ui_buffs:
+	if current_buffs == active_buff_ui:
 		return new_buffs
-	
+	# buscamos que buff no se encuentran actualmente en la UI
 	for buff in current_buffs:
-		if not(buff in ui_buffs):
+		if not(buff in active_buff_ui):
 			new_buffs.append(buff)
 			
 	return new_buffs
-
+	
+##active_buff_ui son buff en BuffBox
+##current_buffs son buffos de carta
 ##leer lista y remover buff por nombre
+func get_removed_buffs(current_buffs, active_buff_ui):
+	var deleted_buffs = []
+	
+	active_buff_ui.sort()
+	current_buffs.sort()
+	
+	if current_buffs == active_buff_ui:
+		return deleted_buffs
+	# buscamos que buff no se encuentran actualmente en la carta
+	for buff in active_buff_ui:
+		if not(buff in current_buffs):
+			deleted_buffs.append(buff)
+			
+	return deleted_buffs
+
+
 func remove_buffs(buffs):
-	var buff_list = []
-	if not buffs is Array:
-		buff_list = [buffs]
-	for buff in buff_list:
+	for buff in buffs:
 		buff_box_ui.get_node(buff).queue_free()
 	
 func set_owner_card(card):

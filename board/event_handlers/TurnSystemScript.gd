@@ -15,7 +15,7 @@ var action_q = []
 
 func _ready():
 	GameHandler.connect("game_ready", self, 'set_state')
-	#GameHandler.connect("turn_finished", self, 'finish_this_turn') #necesita boton de terminar turno para aplicar
+	GameHandler.connect("next_turn", self, 'finish_this_turn') #necesita boton de terminar turno para aplicar
 	GameHandler.turn_system = self
 	active_turn = 'player'
 

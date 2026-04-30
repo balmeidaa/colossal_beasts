@@ -54,26 +54,23 @@ func can_play_action():
 func decrease_actions_remaining():
 	if can_play_action():
 		actions_remaining = actions_remaining - 1
+		display_ui.update_stats()
 	else: ## debug porposes
 		print('bugsote')
 		
-	display_ui.update_all()
-
-
 func reset_actions_remaining():
 	actions_remaining = 2
-	display_ui.update_all()
+	display_ui.update_stats()
 
 
 func get_img_card():
 	return card_info['image']
 	
-func increase_defense(defense):
-	card_info['defense'] = card_info['defense'] + defense
-	display_ui.update_all()
+func increase_defense(amount):
+	card_info['defense'] = card_info['defense'] + amount
+	display_ui.update_stats()
 
 	
-
 func recieve_damage(damage):
 	var defense = card_info['defense']
 	var hp = card_info['current_hp']
@@ -86,7 +83,7 @@ func recieve_damage(damage):
 	card_info['defense'] = defense
 	card_info['current_hp'] = hp
 	# despues checar si esta morido esta carta
-	display_ui.update_all()
+	display_ui.update_stats()
 
 	
 #para hacerla reutilizable con varios filtros

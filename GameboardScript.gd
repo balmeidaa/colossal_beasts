@@ -7,9 +7,8 @@ onready var opponent_cards = $OpponentCards
 var player_cards_pos = [] 
 var opponent_cards_pos = []
 
-
 #inyectar nombres de cartas
-func _ready(): 
+func _ready():
 	player_cards_pos = player_cards.get_children()
 	opponent_cards_pos = opponent_cards.get_children()
 	

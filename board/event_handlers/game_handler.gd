@@ -7,7 +7,7 @@ var target_solver = null
 
 signal game_ready
 #signal game_over
-#signal next_turn
+signal next_turn
 
 
 func _ready():
@@ -40,5 +40,12 @@ func _input(event):
 				active_menu.toggle_menu()
 				#DEBUG
 				#print("Clicked at: ", event.position)
+	
+	##solo el jugador puede emitir la señal via teclado, el oponent bot le damos funcion directa
+func _process(_delta):
+	if Input.is_action_just_pressed("ui_accept") and turn_system.active_turn == 'player':
+		end_turn()	
 		 
 
+func end_turn():
+	emit_signal('next_turn')

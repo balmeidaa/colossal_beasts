@@ -15,7 +15,8 @@ class_name BaseAction
 #	"script_name": "claw_swipe",
 #	"target": "@Card@11:[Sprite3D:1602]"
 #}
-
+func increase_defense(target, amount):
+	target.increase_defense(amount)
 	
 func set_buff(target, buff_name):
 	var buff_dat = GameData.buff_list[buff_name]

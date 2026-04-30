@@ -2,8 +2,8 @@ extends TextureRect
 
 onready var counter = $Counter
 
-func load_buff(buff_name, count):
-	var icon_file = GameData.load_action_texture(buff_name)
+func load_buff(icon_name, count):
+	var icon_file = GameData.load_action_texture(icon_name)
 	texture = load(icon_file)
 	set_counter(count)
 	
